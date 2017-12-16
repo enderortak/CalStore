@@ -1,0 +1,23 @@
+@import "../mixins/flexbox.scss";
+
+
+#root, body{
+    @include flexboxContainer(row, nowrap, flex-start, stretch);
+    & > *{
+        @include flex(1);
+    }    
+}
+#layout{
+    @include flexboxContainer(row, nowrap, flex-start, stretch);
+    height: 100vh;
+    overflow: hidden;
+    & > .main-content {
+        @include flex(1);
+        padding: 2rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+    }
+    & > .ui.menu{ margin: 0; border-radius: 0; z-index: 999}
+}
+
