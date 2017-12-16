@@ -1,7 +1,9 @@
-const utilityToolsVisibilityFilter = (state = "SHOW_ALL", action) => {
+const utilityToolsVisibilityFilter = (state = { typeFilter: "SHOW_ALL", textFilter: undefined }, action) => {
   switch (action.type) {
-    case "SET_UTILITY_TOOLS_VISIBILITY_FILTER":
-      return action.filter;
+    case "SET_UTILITY_TOOLS_TYPE_FILTER":
+      return { ...state, typeFilter: action.filter };
+    case "SET_UTILITY_TOOLS_TEXT_FILTER":
+      return { ...state, textFilter: action.filter };
     default:
       return state;
   }

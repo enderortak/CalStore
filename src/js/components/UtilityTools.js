@@ -95,15 +95,15 @@ const Content = ({ visibleUtilityTools }) => (
   </FlipMove>
 );
 
-const UtilityTools = ({ history, setVisibilityFilter, visibleUtilityTools }) => {
+const UtilityTools = ({ history, setUtilityToolsTypeFilter, visibleUtilityTools }) => {
   history.listen((location, action) => {
     switch (location.pathname) {
-      case "/UtilityTools/All": setVisibilityFilter("SHOW_ALL"); break;
-      case "/UtilityTools/MatlabTools": setVisibilityFilter("SHOW_MATLAB_TOOLS"); break;
-      case "/UtilityTools/ConcertoScripts": setVisibilityFilter("SHOW_CONCERTO_SCRIPTS"); break;
-      case "/UtilityTools/ExcelMacros": setVisibilityFilter("SHOW_EXCEL_MACROS"); break;
-      case "/UtilityTools/AtiIncaScripts": setVisibilityFilter("SHOW_ATI_INCA_SCRIPTS"); break;
-      default: setVisibilityFilter("SHOW_ALL");
+      case "/UtilityTools/All": setUtilityToolsTypeFilter("SHOW_ALL"); break;
+      case "/UtilityTools/MatlabTools": setUtilityToolsTypeFilter("SHOW_MATLAB_TOOLS"); break;
+      case "/UtilityTools/ConcertoScripts": setUtilityToolsTypeFilter("SHOW_CONCERTO_SCRIPTS"); break;
+      case "/UtilityTools/ExcelMacros": setUtilityToolsTypeFilter("SHOW_EXCEL_MACROS"); break;
+      case "/UtilityTools/AtiIncaScripts": setUtilityToolsTypeFilter("SHOW_ATI_INCA_SCRIPTS"); break;
+      default: setUtilityToolsTypeFilter("SHOW_ALL");
     }
 
     console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`);

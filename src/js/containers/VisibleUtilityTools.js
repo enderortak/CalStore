@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import UtilityToolsComponent from "../components/UtilityTools";
-import { setVisibilityFilter } from "../actions/utilityTools";
+import { setUtilityToolsTypeFilter } from "../actions/utilityTools";
 
 const getVisibleUtilityTools = (utilityTools, filter) => {
   switch (filter) {
@@ -26,8 +26,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setVisibilityFilter: (filter) => {
-    dispatch(setVisibilityFilter(filter));
+  setUtilityToolsTypeFilter: (filter) => {
+    dispatch(setUtilityToolsTypeFilter(filter));
   },
 });
 
