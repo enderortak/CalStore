@@ -22,7 +22,7 @@ const Content = () => (
       atActive={{ opacity: 1, left: spring(3, { stiffness: 150, damping: 14 }) }}
       className="switch-wrapper"
     >
-      <Redirect exact from="/UtilityTools" to="/UtilityTools/All" />
+      <Redirect from="/UtilityTools" exact to="/UtilityTools/All" />
       <Route path="/UtilityTools" component={UtilityToolsPage} />
       <Route path="/1" component={Hello} />
       <Route path="/2" component={Hello2} />

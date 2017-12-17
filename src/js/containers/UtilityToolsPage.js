@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Gallery from "../components/gallery/utilityTools/Gallery";
-import GalleryTabFilter from "../components/gallery/GalleryTabFilter";
+import Gallery from "../components/galleries/utilityTools/Gallery";
+import GalleryTabFilter from "../components/galleries/utilityTools/GalleryTabFilter";
 import SearchInput from "../components/SeachInput";
 import { setUtilityToolsTypeFilter, setUtilityToolsTextFilter } from "../actions/utilityTools";
 import filters from "../data/filters";

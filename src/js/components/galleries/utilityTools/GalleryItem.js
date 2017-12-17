@@ -1,7 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Card, Icon, Rating } from "semantic-ui-react";
-import GenericGalleryItem from "../GalleryItem";
+import { Card, Icon, Rating, Image } from "semantic-ui-react";
 
 const semanticType = {
   MATLAB_TOOL: "Matlab Tool",
@@ -19,12 +18,22 @@ const imageUrl = {
 class GalleryItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <GenericGalleryItem
-        name={this.props.name}
-        imageUrl={imageUrl[this.props.type]}
-        type={semanticType[this.props.type]}
-        description={this.props.description}
-      >
+
+      <Card className="gallery-item">
+        <div className="image" style={{ textAlign: "center" }}>
+          <Image
+            src={imageUrl[this.props.type]}
+            alt="Gallery item"
+            style={{
+   padding: "20px", width: "128px", height: "128px", display: "inline-block",
+  }}
+          />
+        </div>
+        <Card.Content>
+          <Card.Header>{this.props.name}</Card.Header>
+          <Card.Meta>{semanticType[this.props.type]}</Card.Meta>
+          <Card.Description>{this.props.description}</Card.Description>
+        </Card.Content>
         <Card.Content extra>
           <div>
             <span>Author</span>
@@ -44,7 +53,7 @@ class GalleryItem extends React.Component { // eslint-disable-line react/prefer-
             <span><i className="comment outline icon" />{this.props.numOfComments.toString()} Comments</span>
           </div>
         </Card.Content>
-      </GenericGalleryItem>
+      </Card>
     );
   }
 }
