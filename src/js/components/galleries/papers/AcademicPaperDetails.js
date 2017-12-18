@@ -18,7 +18,7 @@ const featuredDisplay = isFeatured => (
       color="red"
       icon="star"
       content="Featured Content"
-      style={{ left: "calc( -1rem - 0.2em)", top: "1rem" }}
+      style={{ left: "calc( -1rem - 0.2em)", top: "1rem", zIndex: "999" }}
     />
     : ""
 );
@@ -28,7 +28,7 @@ const AcademicPaperDetails = ({
 }) => (
   <Modal trigger={trigger} closeIcon >
     {featuredDisplay(isFeatured)}
-    <Modal.Content image scrolling>
+    <Modal.Content image scrolling style={{ alignItems: "flex-start" }}>
       <Image
         src="http://acecrc.org.au/wp-content/uploads/2014/05/icon-journal-generic.png"
         alt="Gallery item"
