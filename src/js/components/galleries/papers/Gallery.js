@@ -3,16 +3,16 @@ import propTypes from "prop-types";
 import FlipMove from "react-flip-move";
 import GalleryItem from "./GalleryItem";
 
-const Gallery = ({ utilityTools }) => (
-  <div className="ui link cards gallery" style={{ position: "relative", padding: "0" }}>
+const Gallery = ({ academicPapers }) => (
+  <div className="ui link divided items gallery" style={{ position: "relative", padding: "0" }}>
     <FlipMove duration={500} easing="ease-out" typeName={null} >
-      {utilityTools.map(tool => <GalleryItem key={tool.name} {...tool} />)}
+      {academicPapers.map(paper => <GalleryItem key={paper.title} {...paper} />)}
     </FlipMove>
   </div>
 );
 
 Gallery.propTypes = {
-  utilityTools: propTypes.arrayOf(propTypes.object).isRequired,
+  academicPapers: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default Gallery;

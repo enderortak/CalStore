@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
+import "../../../../style/components/galleries/GalleryItem.scss";
 
 const semanticType = {
   MATLAB_TOOL: "Matlab Tool",

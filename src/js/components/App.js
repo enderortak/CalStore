@@ -3,8 +3,9 @@ import { Route, Redirect } from "react-router-dom";
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Navigation from "./Navigation";
 import UtilityToolsPage from "../containers/UtilityToolsPage";
+import AcademicPapersPage from "../containers/AcademicPapersPage";
 import "../../style/components/App.scss";
-import "../../style/route-animations.css";
+import "../../style/route-animations.scss";
 
 const Hello = () => (
   <img src="https://www.w3schools.com/bootstrap/la.jpg" width="500" alt="1" />
@@ -24,6 +25,7 @@ const Content = () => (
     >
       <Redirect from="/UtilityTools" exact to="/UtilityTools/All" />
       <Route path="/UtilityTools" component={UtilityToolsPage} />
+      <Route path="/AcademicPapers" component={AcademicPapersPage} />
       <Route path="/1" component={Hello} />
       <Route path="/2" component={Hello2} />
     </AnimatedSwitch>

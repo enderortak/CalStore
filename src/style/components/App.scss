@@ -13,7 +13,7 @@
     overflow: hidden;
     & > .main-content {
         @include flex(1);
-        padding: 2rem;
+        padding: 2.5rem;
         overflow-x: hidden;
         overflow-y: auto;
 
