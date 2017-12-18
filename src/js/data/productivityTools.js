@@ -8,10 +8,10 @@ const
   numOfComments = [1, 3, 4, 8, 11, 15],
   getRandom = array => array[Math.floor(Math.random() * array.length)];
 
-const utilityTools = [];
+const productivityTools = [];
 for (let i = 0; i < 10; i += 1) {
   for (let k = 0; k < toolTypes.length; k += 1) {
-    utilityTools.push({
+    productivityTools.push({
       name: `${toolTypesSemantic[k]} ${i + 1}`,
       imageUrl: "",
       type: toolTypes[k],
@@ -42,4 +42,4 @@ const a = [
   { name: "Script 7", toolType: "CONCERTO_SCRIPT" },
 ];
 
-export default utilityTools;
+export default productivityTools;

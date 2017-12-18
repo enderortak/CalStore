@@ -25,7 +25,7 @@ const Link = props => (<NavLink {...props} className="item" activeClassName="act
 const Navigation = () => (
   <div className="ui inverted left vertical menu">
     <Logo />
-    <Link to="/UtilityTools">Utility Tools</Link>
+    <Link to="/ProductivityTools">Productivity Tools</Link>
     <Link to="/AcademicPapers">Academic Papers</Link>
     <Link to="/WorkPackages">WorkPackages</Link>
     <Link to="/1">1</Link>

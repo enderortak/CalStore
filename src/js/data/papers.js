@@ -59,7 +59,7 @@ const papers = [
       and simulation results show an improvement in fuel efficiency compared to the results of a conventional EM.`,
   },
   {
-    title: "An Application of a Model-Prediction-Based ReferenceModification Algorithm to Engine Air Path Control",
+    title: "An Application of a Model-Prediction-Based Reference Modification Algorithm to Engine Air Path Control",
     authors: ["Hayato Shirai", "Hayato Nakada", "Akio Matsunaga", "Hiroyuki Tominaga"],
     affiliation: "Toyota Motor Corporation",
     publishedIn: "SAE WCX 2017",
@@ -78,7 +78,7 @@ const papers = [
     multiple references compared to the previous work for only a single reference.`,
   },
   {
-    title: "Multi-Objective Optimization of Transient Air-Fuel Ratio Limitationof a Diesel Engine Using DoE Based Pareto-Optimal Approach",
+    title: "Multi-Objective Optimization of Transient Air-Fuel Ratio Limitation of a Diesel Engine Using DoE Based Pareto-Optimal Approach",
     authors: ["Cetin Gurel", "Elif Ozmen", "Metin Yilmaz", "Didem Aydin", "Kerem Koprubasi"],
     affiliation: "Ford Motor Company",
     publishedIn: "SAE WCX 2017",
@@ -99,7 +99,7 @@ const papers = [
     collection, modeling and optimization processes are also discussed.`,
   },
   {
-    title: "Investigation of Performance Differences and ControlSynthesis for Servo-Controlled and Vacuum-Actuated Wastegates",
+    title: "Investigation of Performance Differences and Control Synthesis for Servo-Controlled and Vacuum-Actuated Wastegates",
     authors: ["Robin Holmbom", "Bohan Liang", "Lars Eriksson"],
     affiliation: "Linköping University, Volvo Car Corporation",
     publishedIn: "SAE WCX 2017",

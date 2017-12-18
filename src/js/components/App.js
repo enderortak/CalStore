@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Navigation from "./Navigation";
-import UtilityToolsPage from "../containers/UtilityToolsPage";
+import ProductivityToolsPage from "../containers/ProductivityToolsPage";
 import AcademicPapersPage from "../containers/AcademicPapersPage";
 import "../../style/components/App.scss";
 import "../../style/route-animations.scss";
@@ -23,8 +23,8 @@ const Content = () => (
       atActive={{ opacity: 1, left: spring(3, { stiffness: 150, damping: 14 }) }}
       className="switch-wrapper"
     >
-      <Redirect from="/UtilityTools" exact to="/UtilityTools/All" />
-      <Route path="/UtilityTools" component={UtilityToolsPage} />
+      <Redirect from="/ProductivityTools" exact to="/ProductivityTools/All" />
+      <Route path="/ProductivityTools" component={ProductivityToolsPage} />
       <Route path="/AcademicPapers" component={AcademicPapersPage} />
       <Route path="/1" component={Hello} />
       <Route path="/2" component={Hello2} />

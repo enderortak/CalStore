@@ -14,7 +14,8 @@ const getVisiblePapers = (academicPapers, filter) => {
 
   if (filter.textFilter) {
     papers = papers.filter(p =>
-      p.title.toLocaleLowerCase().includes(filter.textFilter.toLocaleLowerCase()));
+      p.title.toLocaleLowerCase().includes(filter.textFilter.toLocaleLowerCase()) ||
+      p.abstract.toLocaleLowerCase().includes(filter.textFilter.toLocaleLowerCase()));
   }
 
   return papers;
@@ -25,6 +26,7 @@ const mapStateToProps = state => ({
     state.academicPapers,
     state.academicPapersVisibilityFilter,
   ),
+  textFilter: state.academicPapersVisibilityFilter.textFilter,
 });
 const mapDispatchToProps = dispatch => ({
   setKeywordFilter: (filter) => {
@@ -36,11 +38,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const AcademicPapersPage = connect(mapStateToProps, mapDispatchToProps)(({
-  academicPapers, setKeywordFilter, setTextFilter,
+  academicPapers, setKeywordFilter, setTextFilter, textFilter,
 }) => (
   <div>
     <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
-    <Gallery academicPapers={academicPapers} setTextFilter={setTextFilter} />
+    <Gallery academicPapers={academicPapers} setTextFilter={setTextFilter} textFilter={textFilter} />
   </div>
 ));
 

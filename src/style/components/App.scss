@@ -1,7 +1,7 @@
 @import "../mixins/flexbox.scss";
 
 
-#root, body{
+#root{
     @include flexboxContainer(row, nowrap, flex-start, stretch);
     & > *{
         @include flex(1);

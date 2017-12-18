@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
+import Highlighter from "react-highlighter";
 import "../../../../style/components/galleries/GalleryItem.scss";
 
 const semanticType = {
@@ -31,9 +32,17 @@ class GalleryItem extends React.Component { // eslint-disable-line react/prefer-
           />
         </div>
         <Card.Content>
-          <Card.Header>{this.props.name}</Card.Header>
+          <Card.Header>
+            <Highlighter search={this.props.textFilter} matchStyle={{ background: "yellow" }}>
+              {this.props.name}
+            </Highlighter>
+          </Card.Header>
           <Card.Meta>{semanticType[this.props.type]}</Card.Meta>
-          <Card.Description>{this.props.description}</Card.Description>
+          <Card.Description>
+            <Highlighter search={this.props.textFilter} matchStyle={{ background: "yellow" }}>
+              {this.props.description}
+            </Highlighter>
+          </Card.Description>
         </Card.Content>
         <Card.Content extra>
           <div>
@@ -69,10 +78,11 @@ GalleryItem.propTypes = {
   numOfDownloads: propTypes.number.isRequired,
   numOfComments: propTypes.number.isRequired,
   rating: propTypes.number.isRequired,
+  textFilter: propTypes.string,
 };
 
 GalleryItem.defaultProps = {
-  description: "",
+  description: "", textFilter: "",
 };
 
 export default GalleryItem;

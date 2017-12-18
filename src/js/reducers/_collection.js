@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
-import utilityToolsVisibilityFilter from "./utilityToolsVisibilityFilter";
-import utilityTools from "./utilityTools";
+import productivityToolsVisibilityFilter from "./productivityToolsVisibilityFilter";
+import productivityTools from "./productivityTools";
 import academicPapers from "./academicPapers";
 import academicPapersVisibilityFilter from "./academicPapersVisibilityFilter";
 
 
 const reducerCollection = combineReducers({
-  utilityTools,
-  utilityToolsVisibilityFilter,
+  productivityTools,
+  productivityToolsVisibilityFilter,
   academicPapers,
   academicPapersVisibilityFilter,
 
