@@ -4,11 +4,11 @@ import { Divider } from "semantic-ui-react";
 import Gallery from "../components/galleries/papers/Gallery";
 import SearchInput from "../components/SeachInput";
 import GalleryKeywordFilter from "../components/galleries/papers/GalleryKeywordFilter";
-import { setAcademicPapersKeywordFilter, setAcademicPapersTextFilter } from "../actions/academicPapers";
+import { setScientificPapersKeywordFilter, setScientificPapersTextFilter } from "../actions/scientificPapers";
 
 
-const getVisiblePapers = (academicPapers, filter) => {
-  let papers = academicPapers;
+const getVisiblePapers = (scientificPapers, filter) => {
+  let papers = scientificPapers;
   if (filter.keywords.length > 0) {
     papers = papers.filter(p =>
       p.keywords.filter(n => filter.keywords.includes(n)).length > 0);
@@ -24,32 +24,32 @@ const getVisiblePapers = (academicPapers, filter) => {
 };
 
 const mapStateToProps = state => ({
-  academicPapers: getVisiblePapers(
-    state.academicPapers,
-    state.academicPapersVisibilityFilter,
+  scientificPapers: getVisiblePapers(
+    state.scientificPapers,
+    state.scientificPapersVisibilityFilter,
   ),
-  textFilter: state.academicPapersVisibilityFilter.textFilter,
-  keywords: state.academicPapersKeywordList,
+  textFilter: state.scientificPapersVisibilityFilter.textFilter,
+  keywords: state.scientificPapersKeywordList,
 });
 const mapDispatchToProps = dispatch => ({
   setKeywordFilter: (filter) => {
-    dispatch(setAcademicPapersKeywordFilter(filter));
+    dispatch(setScientificPapersKeywordFilter(filter));
   },
   setTextFilter: (filter) => {
-    dispatch(setAcademicPapersTextFilter(filter));
+    dispatch(setScientificPapersTextFilter(filter));
   },
 });
 
-const AcademicPapersPage = connect(mapStateToProps, mapDispatchToProps)(({
-  academicPapers, setKeywordFilter, setTextFilter, textFilter, keywords,
+const ScientificPapersPage = connect(mapStateToProps, mapDispatchToProps)(({
+  scientificPapers, setKeywordFilter, setTextFilter, textFilter, keywords,
 }) => (
   <div>
     <GalleryKeywordFilter keywords={keywords} setKeywordFilter={setKeywordFilter} />
     <Divider horizontal content="OR" style={{ marginBottom: "0" }} />
     <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
-    <Gallery academicPapers={academicPapers} setTextFilter={setTextFilter} textFilter={textFilter} />
+    <Gallery scientificPapers={scientificPapers} setTextFilter={setTextFilter} textFilter={textFilter} />
   </div>
 ));
 
-export default AcademicPapersPage;
+export default ScientificPapersPage;
 

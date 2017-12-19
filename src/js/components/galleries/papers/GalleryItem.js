@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Item, Icon, Label, Image, Popup } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import AcademicPaperDetails from "./AcademicPaperDetails";
+import ScientificPaperDetails from "./ScientificPaperDetails";
 import "../../../../style/components/galleries/GalleryItem.scss";
 
 
@@ -77,7 +77,7 @@ GalleryItem.defaultProps = {
 
 class GalleryItemWithDetails extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    return (<AcademicPaperDetails {...this.props} trigger={<GalleryItem {...this.props} />} />);
+    return (<ScientificPaperDetails {...this.props} trigger={<GalleryItem {...this.props} />} />);
   }
 }
 

@@ -1,4 +1,4 @@
-const academicPapersVisibilityFilter = (state = { keywords: [], textFilter: undefined }, action) => {
+const scientificPapersVisibilityFilter = (state = { keywords: [], textFilter: undefined }, action) => {
   switch (action.type) {
     case "SET_ACADEMIC_PAPERS_KEYWORD_FILTER":
       return { ...state, keywords: action.filter };
@@ -9,4 +9,4 @@ const academicPapersVisibilityFilter = (state = { keywords: [], textFilter: unde
   }
 };
 
-export default academicPapersVisibilityFilter;
+export default scientificPapersVisibilityFilter;

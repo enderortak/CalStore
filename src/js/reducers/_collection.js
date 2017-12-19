@@ -2,17 +2,17 @@ import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 import productivityToolsVisibilityFilter from "./productivityToolsVisibilityFilter";
 import productivityTools from "./productivityTools";
-import academicPapers from "./academicPapers";
-import academicPapersVisibilityFilter from "./academicPapersVisibilityFilter";
-import academicPapersKeywordList from "./academicPapersKeywordList";
+import scientificPapers from "./scientificPapers";
+import scientificPapersVisibilityFilter from "./scientificPapersVisibilityFilter";
+import scientificPapersKeywordList from "./scientificPapersKeywordList";
 
 
 const reducerCollection = combineReducers({
   productivityTools,
   productivityToolsVisibilityFilter,
-  academicPapers,
-  academicPapersVisibilityFilter,
-  academicPapersKeywordList,
+  scientificPapers,
+  scientificPapersVisibilityFilter,
+  scientificPapersKeywordList,
   router: routerReducer,
 });
 

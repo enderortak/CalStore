@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Modal, Image, Header, Label, Button, Icon, Table, Rating, Segment } from "semantic-ui-react";
+import Comments from "./ProductivityToolComments";
 
 const actions = url => ([
   <Button color="green" icon="download" content="Download" as="a" href={url} key="download" />,
@@ -51,6 +52,7 @@ const ProductivityToolDetails = ({
       <Image
         src={imageUrl[type]}
         alt="Productivity tool"
+        style={{ maxWidth: "200px" }}
       />
       <Modal.Description>
         <Header content={name} />
@@ -89,7 +91,7 @@ const ProductivityToolDetails = ({
               <Table.Cell content={<Rating icon="star" defaultRating={rating} maxRating={5} disabled />} />
             </Table.Row>
             <Table.Row>
-              <Table.Cell content="How to use" />
+              <Table.Cell verticalAlign="top" content="How to use" />
               <Table.Cell>
                 <Header as="h5" content="Installing" />
                 <p>Use npm to install react-moment along with its peer dependency, moment.</p>
@@ -119,6 +121,7 @@ exports class MyComponent extends React.Component {
             </Table.Row>
           </Table.Body>
         </Table>
+        <Comments />
       </Modal.Description>
 
     </Modal.Content>

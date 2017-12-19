@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Navigation from "./Navigation";
 import ProductivityToolsPage from "../containers/ProductivityToolsPage";
-import AcademicPapersPage from "../containers/AcademicPapersPage";
+import ScientificPapersPage from "../containers/ScientificPapersPage";
 import TechnicalPresentationsPage from "../containers/TechnicalPresentationsPage";
 import "../../style/components/App.scss";
 import "../../style/route-animations.scss";
@@ -26,7 +26,7 @@ const Content = () => (
     >
       <Redirect from="/ProductivityTools" exact to="/ProductivityTools/All" />
       <Route path="/ProductivityTools" component={ProductivityToolsPage} />
-      <Route path="/AcademicPapers" component={AcademicPapersPage} />
+      <Route path="/ScientificPapers" component={ScientificPapersPage} />
       <Route path="/TechnicalPresentations" component={TechnicalPresentationsPage} />
       <Route path="/1" component={Hello} />
       <Route path="/2" component={Hello2} />

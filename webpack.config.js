@@ -18,7 +18,7 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin(),
     new ExtractTextPlugin("style.css"),
-    new CopyWebpackPlugin([{ from: "assets/academic-papers", to: path.resolve(__dirname, "dist/assets/academicPapers") }]),
+    new CopyWebpackPlugin([{ from: "assets/scientific-papers", to: path.resolve(__dirname, "dist/assets/scientificPapers") }]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],

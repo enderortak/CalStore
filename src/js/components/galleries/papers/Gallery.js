@@ -3,16 +3,16 @@ import propTypes from "prop-types";
 import FlipMove from "react-flip-move";
 import GalleryItem from "./GalleryItem";
 
-const Gallery = ({ academicPapers, textFilter }) => (
+const Gallery = ({ scientificPapers, textFilter }) => (
   <div className="ui link divided items gallery" style={{ position: "relative", padding: "0" }}>
     <FlipMove duration={500} easing="ease-out" typeName={null} >
-      {academicPapers.map(paper => <GalleryItem key={paper.title} {...paper} textFilter={textFilter} />)}
+      {scientificPapers.map(paper => <GalleryItem key={paper.title} {...paper} textFilter={textFilter} />)}
     </FlipMove>
   </div>
 );
 
 Gallery.propTypes = {
-  academicPapers: propTypes.arrayOf(propTypes.object).isRequired,
+  scientificPapers: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default Gallery;

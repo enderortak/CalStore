@@ -3,13 +3,13 @@ import propTypes from "prop-types";
 import { Modal, Image, Header, Label, Button, Icon, Table } from "semantic-ui-react";
 
 const actions = url => ([
-  <Button color="green" icon="download" content="Download" as="a" href={url} />,
+  <Button color="green" icon="download" content="Download" as="a" href={url} download />,
   <Button
     color="blue"
     icon="share alternate"
     content="Share"
     as="a"
-    href="mailto:?subject=This may interest you&body=http://localhost:9001/AcademicPapers"
+    href="mailto:?subject=This may interest you&body=http://localhost:9001/ScientificPapers"
   />,
   <Button color="black" icon="close" content="Close" />,
 ]);
@@ -27,7 +27,7 @@ const featuredDisplay = isFeatured => (
     : ""
 );
 
-const AcademicPaperDetails = ({
+const ScientificPaperDetails = ({
   trigger, isFeatured, title, authors, affiliation, publishDate, publishedIn, abstract, url, keywords,
   uploadDate, uploadedBy,
 }) => (
@@ -74,9 +74,9 @@ const AcademicPaperDetails = ({
   </Modal>
 );
 
-AcademicPaperDetails.propTypes = {
+ScientificPaperDetails.propTypes = {
   trigger: propTypes.node.isRequired,
 };
 
-export default AcademicPaperDetails;
+export default ScientificPaperDetails;
 

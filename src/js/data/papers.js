@@ -10,7 +10,7 @@ export const keywords = [
   "Engine modelling",
 ];
 const uploaders = ["Çetin Gürel", "Metin Yılmaz"];
-const academicPapersFolder = "assets/academicPapers/";
+const scientificPapersFolder = "assets/scientificPapers/";
 const numOfDownloads = [75, 42, 55, 81, 94];
 
 const getRandom = array =>
@@ -41,7 +41,7 @@ const papers = [
         inputs. The global dynamic model is called during the calibration optimization process and the cycle cumulative results are used to
         control the constraints and optimize the objectives. This produces final calibration maps ready for immediate vehicle tests without test
         bed validation, thereby improving the efficiency of the calibration process.`,
-    url: `${academicPapersFolder}SAE WCX 2017/2017-01-0583.pdf`,
+    url: `${scientificPapersFolder}SAE WCX 2017/2017-01-0583.pdf`,
     uploadedBy: getRandom2(uploaders),
     uploadDate: "12.12.2017",
   },
@@ -64,7 +64,7 @@ const papers = [
       predicted duration time of the residual power, a rule-based mode switching strategy is established. There are three types of control
       modes defined according to the target amount of battery charge. The proposed strategy of this paper was validated through simulation,
       and simulation results show an improvement in fuel efficiency compared to the results of a conventional EM.`,
-    url: `${academicPapersFolder}SAE WCX 2017/2017-01-0584.pdf`,
+    url: `${scientificPapersFolder}SAE WCX 2017/2017-01-0584.pdf`,
     uploadedBy: getRandom2(uploaders),
     uploadDate: "12.12.2017",
   },
@@ -87,7 +87,7 @@ const papers = [
     driving cycle experiment using a real engine, in which constraints are enforced on maximal boost pressure, turbine speed, compressor
     surge and maximal and minimal EGR rates. The experiment implies that we have expanded the applicability of an RG to system with
     multiple references compared to the previous work for only a single reference.`,
-    url: `${academicPapersFolder}SAE WCX 2017/2017-01-0586.pdf`,
+    url: `${scientificPapersFolder}SAE WCX 2017/2017-01-0586.pdf`,
     uploadedBy: getRandom2(uploaders),
     uploadDate: "12.12.2017",
   },
@@ -112,7 +112,7 @@ const papers = [
     performance. The methodology is applied to a diesel engine with Euro VI emission norms and experimental results are presented
     including the evaluation of performance and drivability metrics on a test vehicle. Potential areas of future work to improve data
     collection, modeling and optimization processes are also discussed.`,
-    url: `${academicPapersFolder}SAE WCX 2017/2017-01-0587.pdf`,
+    url: `${scientificPapersFolder}SAE WCX 2017/2017-01-0587.pdf`,
     uploadedBy: getRandom2(uploaders),
     uploadDate: "12.12.2017",
   },
@@ -138,7 +138,7 @@ const papers = [
     controllers are implemented and compared both in a simulation environment and evaluated in an engine test bench. In addition, for the
     electric wastegate, both soft-landing and tightening features are also implemented and investigated. Their aim is to improve the 
     lifetime and behavior at or near the closed position.`,
-    url: `${academicPapersFolder}SAE WCX 2017/2017-01-0592.pdf`,
+    url: `${scientificPapersFolder}SAE WCX 2017/2017-01-0592.pdf`,
     uploadedBy: getRandom2(uploaders),
     uploadDate: "12.12.2017",
   },
