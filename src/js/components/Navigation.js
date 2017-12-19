@@ -26,10 +26,10 @@ const Navigation = () => (
   <div className="ui inverted left vertical menu">
     <Logo />
     <Link to="/ProductivityTools">Productivity Tools</Link>
-    <Link to="/AcademicPapers">Academic Papers</Link>
-    <Link to="/WorkPackages">WorkPackages</Link>
-    <Link to="/1">1</Link>
-    <Link to="/2">2</Link>
+    <Link to="/AcademicPapers">Scientific Papers</Link>
+    <Link to="/SharedWebContent">Shared Web Content</Link>
+    <Link to="/WorkPackages">Process Documents</Link>
+    <Link to="/ReadingMaterials">Reading Materials</Link>
   </div>
 );
 

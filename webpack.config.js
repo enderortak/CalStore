@@ -1,22 +1,24 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 
 // const audioPath = path.join(__dirname, "./src/assets/audio/");
 
 module.exports = {
   entry: {
     app: [
-      'react-hot-loader/patch',
+      "react-hot-loader/patch",
       "./src/js/index.js",
     ],
   },
   plugins: [
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin(),
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin("style.css"),
+    new CopyWebpackPlugin([{ from: "assets/academic-papers", to: path.resolve(__dirname, "dist/assets/academicPapers") }]),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -50,16 +52,16 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+        use: ExtractTextPlugin.extract(["css-loader", "sass-loader"]),
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: 'fonts/[name].[ext]',
-              outputPath: 'assets/',
+              name: "fonts/[name].[ext]",
+              outputPath: "assets/",
             },
           },
         ],
@@ -68,10 +70,10 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|bmp)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: 'images/[name].[ext]',
-              outputPath: 'assets/',
+              name: "images/[name].[ext]",
+              outputPath: "assets/",
             },
           },
         ],

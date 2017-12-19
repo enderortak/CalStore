@@ -4,6 +4,7 @@ import productivityToolsVisibilityFilter from "./productivityToolsVisibilityFilt
 import productivityTools from "./productivityTools";
 import academicPapers from "./academicPapers";
 import academicPapersVisibilityFilter from "./academicPapersVisibilityFilter";
+import academicPapersKeywordList from "./academicPapersKeywordList";
 
 
 const reducerCollection = combineReducers({
@@ -11,7 +12,7 @@ const reducerCollection = combineReducers({
   productivityToolsVisibilityFilter,
   academicPapers,
   academicPapersVisibilityFilter,
-
+  academicPapersKeywordList,
   router: routerReducer,
 });
 

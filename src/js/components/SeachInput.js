@@ -5,6 +5,7 @@ import { Input } from "semantic-ui-react";
 const SearchInput = ({ onChange, placeholder }) => (
   <div style={{ padding: "1em 0" }}>
     <Input
+      fluid
       icon="search"
       placeholder={placeholder}
       onChange={onChange}

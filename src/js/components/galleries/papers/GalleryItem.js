@@ -4,7 +4,7 @@ import { Item, Icon, Label, Image, Popup } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
 import AcademicPaperDetails from "./AcademicPaperDetails";
-import "../../../../style/components/galleries/papers/ellipsis.scss";
+import "../../../../style/components/galleries/GalleryItem.scss";
 
 
 const featuredDisplay = isFeatured => (
@@ -19,9 +19,9 @@ const featuredDisplay = isFeatured => (
 );
 
 const GalleryItem = ({
-  ...props,
   title, authors, abstract, affiliation, publishDate,
   publishedIn, numOfDownloads, isFeatured, textFilter, keywords,
+  ...props
 }) =>
   (
     <Item {...pickHTMLProps(props)} className="gallery-item" style={{ position: "relative" }}>

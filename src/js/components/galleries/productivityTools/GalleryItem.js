@@ -2,6 +2,8 @@ import React from "react";
 import propTypes from "prop-types";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
+import { pickHTMLProps } from "pick-react-known-prop";
+import ProductivityToolDetails from "./ProductivityToolDetails";
 import "../../../../style/components/galleries/GalleryItem.scss";
 
 const semanticType = {
@@ -11,62 +13,62 @@ const semanticType = {
   ATI_INCA_SCRIPT: "ATI/INCA Script",
 };
 const imageUrl = {
-  MATLAB_TOOL: "https://fr.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/24241/versions/5/screenshot.png",
+  MATLAB_TOOL: "http://tsgdoc.socsci.ru.nl/images/thumb/2/21/Matlab_Logo.png/267px-Matlab_Logo.png",
   CONCERTO_SCRIPT: "https://www.avl.com/teamsuite/CONCERTO_256x256.png",
   EXCEL_MACRO: "http://compertus.eu/uploaded/Excel-logo-2.png",
   ATI_INCA_SCRIPT: "https://www.etas.com/data/products_measurement_data_analysis/icon_mda.png",
 };
 
-class GalleryItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
+const GalleryItem = ({
+  name, type, description, author, addedOn, numOfDownloads, numOfComments,
+  rating, textFilter, ...props
+}) => // eslint-disable-line react/prefer-stateless-function
+  (
 
-      <Card className="gallery-item">
-        <div className="image" style={{ textAlign: "center" }}>
-          <Image
-            src={imageUrl[this.props.type]}
-            alt="Gallery item"
-            style={{
+    <Card {...pickHTMLProps(props)} className="gallery-item">
+      <div className="image" style={{ textAlign: "center" }}>
+        <Image
+          src={imageUrl[type]}
+          alt="Gallery item"
+          style={{
    padding: "20px", width: "128px", height: "128px", display: "inline-block",
   }}
-          />
+        />
+      </div>
+      <Card.Content>
+        <Card.Header>
+          <Highlighter search={textFilter} matchStyle={{ background: "yellow" }}>
+            {name}
+          </Highlighter>
+        </Card.Header>
+        <Card.Meta>{semanticType[type]}</Card.Meta>
+        <Card.Description>
+          <Highlighter search={textFilter} matchStyle={{ background: "yellow" }}>
+            {description}
+          </Highlighter>
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <div>
+          <span>Author</span>
+          <span className="right floated"><Icon name="user" />{author}</span>
         </div>
-        <Card.Content>
-          <Card.Header>
-            <Highlighter search={this.props.textFilter} matchStyle={{ background: "yellow" }}>
-              {this.props.name}
-            </Highlighter>
-          </Card.Header>
-          <Card.Meta>{semanticType[this.props.type]}</Card.Meta>
-          <Card.Description>
-            <Highlighter search={this.props.textFilter} matchStyle={{ background: "yellow" }}>
-              {this.props.description}
-            </Highlighter>
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <div>
-            <span>Author</span>
-            <span className="right floated"><Icon name="user" />{this.props.author}</span>
-          </div>
-          <div>
-            <span>Added on</span>
-            <span className="right floated"><Icon name="calendar" />{this.props.addedOn}</span>
-          </div>
-        </Card.Content>
-        <Card.Content extra>
-          <div>
-            <span className="right floated"><Icon name="download" />{this.props.numOfDownloads.toString()} Downloads</span>
-            <span>Rating:<Rating icon="star" defaultRating={this.props.rating} maxRating={5} disabled /></span>
-          </div>
-          <div>
-            <span><i className="comment outline icon" />{this.props.numOfComments.toString()} Comments</span>
-          </div>
-        </Card.Content>
-      </Card>
-    );
-  }
-}
+        <div>
+          <span>Added on</span>
+          <span className="right floated"><Icon name="calendar" />{addedOn}</span>
+        </div>
+      </Card.Content>
+      <Card.Content extra>
+        <div>
+          <span className="right floated"><Icon name="download" />{numOfDownloads.toString()} Downloads</span>
+          <span>Rating:<Rating icon="star" defaultRating={rating} maxRating={5} disabled /></span>
+        </div>
+        <div>
+          <span><i className="comment outline icon" />{numOfComments.toString()} Comments</span>
+        </div>
+      </Card.Content>
+    </Card>
+  );
 
 
 GalleryItem.propTypes = {
@@ -85,4 +87,10 @@ GalleryItem.defaultProps = {
   description: "", textFilter: "",
 };
 
-export default GalleryItem;
+class GalleryItemWithDetails extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (<ProductivityToolDetails {...this.props} trigger={<GalleryItem {...this.props} />} />);
+  }
+}
+
+export default GalleryItemWithDetails;
