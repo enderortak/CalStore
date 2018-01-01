@@ -31,21 +31,4 @@ for (let i = 0; i < 10; i += 1) {
   }
 }
 
-const a = [
-  { name: "Tool 1", toolType: "MATLAB_TOOL" },
-  { name: "Script 1", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 2", toolType: "MATLAB_TOOL" },
-  { name: "Script 2", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 3", toolType: "MATLAB_TOOL" },
-  { name: "Script 3", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 4", toolType: "MATLAB_TOOL" },
-  { name: "Script 4", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 5", toolType: "MATLAB_TOOL" },
-  { name: "Script 5", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 6", toolType: "MATLAB_TOOL" },
-  { name: "Script 6", toolType: "CONCERTO_SCRIPT" },
-  { name: "Tool 7", toolType: "MATLAB_TOOL" },
-  { name: "Script 7", toolType: "CONCERTO_SCRIPT" },
-];
-
 export default productivityTools;

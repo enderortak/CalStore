@@ -3,8 +3,8 @@ import propTypes from "prop-types";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import ProductivityToolDetails from "./ProductivityToolDetails";
-import "../../../../style/components/galleries/GalleryItem.scss";
+import Details from "./details";
+import "./style/galleryItem.scss";
 
 const semanticType = {
   MATLAB_TOOL: "Matlab Tool",
@@ -87,9 +87,9 @@ GalleryItem.defaultProps = {
   description: "", textFilter: "",
 };
 
-class GalleryItemWithDetails extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class GalleryItemWithDetails extends React.Component {
   render() {
-    return (<ProductivityToolDetails {...this.props} trigger={<GalleryItem {...this.props} />} />);
+    return (<Details {...this.props} trigger={<GalleryItem {...this.props} />} />);
   }
 }
 

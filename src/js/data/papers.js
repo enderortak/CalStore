@@ -153,9 +153,9 @@ const papers = [
 //   },
 ];
 papers.forEach((p) => {
-  p.keywords = getRandom(keywords);
-  p.numOfDownloads = getRandom2(numOfDownloads);
-  p.isFeatured = Math.random() >= 0.5;
+  p.keywords = getRandom(keywords); // eslint-disable-line
+  p.numOfDownloads = getRandom2(numOfDownloads); // eslint-disable-line
+  p.isFeatured = Math.random() >= 0.5; // eslint-disable-line
 });
 
 export default papers;

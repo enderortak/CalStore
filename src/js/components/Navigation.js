@@ -29,7 +29,8 @@ const Navigation = () => (
     <Link to="/ScientificPapers">Scientific Papers</Link>
     <Link to="/SharedWebContent">Shared Web Content</Link>
     <Link to="/WorkPackages">Process Documents</Link>
-    <Link to="/ReadingMaterials">Reading Materials</Link>
+    <Link to="/ProductivityTools/Add">Reading Materials</Link>
+    <Link to="/ScientificPapers/qwe">Reading Materials</Link>
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Modal, Image, Header, Label, Button, Icon, Table, Rating, Segment } from "semantic-ui-react";
-import Comments from "./ProductivityToolComments";
+import { Modal, Image, Header, Label, Button, Table, Rating, Segment } from "semantic-ui-react";
+import Comments from "./comments";
 
 const actions = url => ([
   <Button color="green" icon="download" content="Download" as="a" href={url} key="download" />,
@@ -44,7 +44,7 @@ const imageUrl = {
 
 const ProductivityToolDetails = ({
   trigger, isFeatured, name, version, type, author, addedOn,
-  lastUpdatedOn, description, numOfDownloads, rating, comments,
+  lastUpdatedOn, description, numOfDownloads, rating,
 }) => (
   <Modal trigger={trigger} closeIcon >
     {featuredDisplay(isFeatured)}
@@ -134,6 +134,20 @@ exports class MyComponent extends React.Component {
 
 ProductivityToolDetails.propTypes = {
   trigger: propTypes.node.isRequired,
+  isFeatured: propTypes.bool.isRequired,
+  name: propTypes.string.isRequired,
+  version: propTypes.string,
+  type: propTypes.string.isRequired,
+  author: propTypes.string.isRequired,
+  addedOn: propTypes.string.isRequired,
+  lastUpdatedOn: propTypes.string.isRequired,
+  description: propTypes.string,
+  numOfDownloads: propTypes.number.isRequired,
+  rating: propTypes.number.isRequired,
+};
+
+ProductivityToolDetails.defaultProps = {
+  version: "", description: "",
 };
 
 export default ProductivityToolDetails;

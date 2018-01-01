@@ -1,0 +1,28 @@
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { spring, AnimatedSwitch } from 'react-router-transition';
+import ListProductivityToolsPage from "../containers/productivityTools/list";
+import ListScientificPapersPage from "../containers/scientificPapers/list";
+import TechnicalPresentationsPage from "../containers/TechnicalPresentationsPage";
+import AddProductivityToolPage from "../containers/productivityTools/add";
+import "../../style/route-animations.scss";
+
+const MainRouter = props => (
+  <AnimatedSwitch
+    {...props}
+    atEnter={{ opacity: 0, left: 100 }}
+    atLeave={{ opacity: 0, left: spring(-100, { stiffness: 150, damping: 14 }) }}
+    atActive={{ opacity: 1, left: spring(3, { stiffness: 150, damping: 14 }) }}
+    className="switch-wrapper"
+  >
+    <Redirect from="/ProductivityTools" exact to="/ProductivityTools/All" />
+    <Route path="/ProductivityTools" component={ListProductivityToolsPage} />
+    <Route path="/ScientificPapers" component={ListScientificPapersPage} />
+    <Route path="/TechnicalPresentations" component={TechnicalPresentationsPage} />
+    <Route path="/ProductivityTools/Add" component={AddProductivityToolPage} />
+  </AnimatedSwitch>
+);
+
+const a = "";
+
+export { MainRouter, a };

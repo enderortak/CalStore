@@ -1,0 +1,17 @@
+.ui.link.gallery{
+  & > .gallery-item, & > .ui.gallery-item{
+    -webkit-transition: none;
+       -moz-transition: none;
+         -o-transition: none;
+            transition: none;
+            position: relative;
+  }
+    & > .ui.gallery-item{
+      font-size: 0.8em;    
+    }
+} 
+.gallery-item .description{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

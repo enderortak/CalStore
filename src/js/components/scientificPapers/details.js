@@ -27,11 +27,12 @@ const featuredDisplay = isFeatured => (
     : ""
 );
 
-const ScientificPaperDetails = ({
-  trigger, isFeatured, title, authors, affiliation, publishDate, publishedIn, abstract, url, keywords,
-  uploadDate, uploadedBy,
+const Details = ({
+  trigger, isFeatured, title, authors, affiliation,
+  publishDate, publishedIn, abstract, url, keywords,
+  uploadDate, uploadedBy, open,
 }) => (
-  <Modal trigger={trigger} closeIcon >
+  <Modal trigger={trigger} closeIcon open={open}>
     {featuredDisplay(isFeatured)}
     <Modal.Content image scrolling style={{ alignItems: "flex-start" }}>
       <Image
@@ -57,6 +58,19 @@ const ScientificPaperDetails = ({
               <Table.Cell>{affiliation}</Table.Cell>
             </Table.Row>
             <Table.Row>
+              <Table.Cell>Publish date</Table.Cell>
+              <Table.Cell>{publishDate}</Table.Cell>
+            </Table.Row>
+            {
+              (
+              publishedIn && publishedIn !== "" ?
+                <Table.Row>
+                  <Table.Cell>Affiliation</Table.Cell>
+                  <Table.Cell>{affiliation}</Table.Cell>
+                </Table.Row> : ""
+              )
+            }
+            <Table.Row>
               <Table.Cell verticalAlign="top">Abstract</Table.Cell>
               <Table.Cell>{abstract}</Table.Cell>
             </Table.Row>
@@ -74,9 +88,28 @@ const ScientificPaperDetails = ({
   </Modal>
 );
 
-ScientificPaperDetails.propTypes = {
+Details.propTypes = {
   trigger: propTypes.node.isRequired,
+  isFeatured: propTypes.bool,
+  title: propTypes.string.isRequired,
+  authors: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
+  affiliation: propTypes.string,
+  publishDate: propTypes.string.isRequired,
+  publishedIn: propTypes.string,
+  abstract: propTypes.string,
+  url: propTypes.string.isRequired,
+  keywords: propTypes.arrayOf(propTypes.string.isRequired),
+  uploadDate: propTypes.string.isRequired,
+  uploadedBy: propTypes.string.isRequired,
+  open: propTypes.bool,
+};
+Details.defaultProps = {
+  isFeatured: false,
+  affiliation: "",
+  publishedIn: "",
+  abstract: "",
+  keywords: [],
 };
 
-export default ScientificPaperDetails;
+export default Details;
 

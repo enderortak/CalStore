@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Gallery from "../components/galleries/productivityTools/Gallery";
-import GalleryTabFilter from "../components/galleries/productivityTools/GalleryTabFilter";
-import SearchInput from "../components/SeachInput";
-import { setProductivityToolsTypeFilter, setProductivityToolsTextFilter } from "../actions/productivityTools";
-import filters from "../data/filters";
+import Gallery from "../../components/productivityTools/gallery";
+import GalleryTabFilter from "../../components/productivityTools/galleryTabFilter";
+import SearchInput from "../../components/SeachInput";
+import { setProductivityToolsTypeFilter, setProductivityToolsTextFilter } from "../../actions/productivityTools";
+import filters from "../../data/filters";
 
 
 const getVisibleProductivityTools = (productivityTools, filter) => {
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const ProductivityToolsPage = connect(mapStateToProps, mapDispatchToProps)(({
+const List = connect(mapStateToProps, mapDispatchToProps)(({
   productivityTools, history, setTypeFilter, setTextFilter, textFilter,
 }) => {
   history.listen((location) => {
@@ -67,9 +67,13 @@ const ProductivityToolsPage = connect(mapStateToProps, mapDispatchToProps)(({
     <div>
       <GalleryTabFilter filters={filters} />
       <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
-      <Gallery productivityTools={productivityTools} setTextFilter={setTextFilter} textFilter={textFilter} />
+      <Gallery
+        productivityTools={productivityTools}
+        setTextFilter={setTextFilter}
+        textFilter={textFilter}
+      />
     </div>
   );
 });
 
-export default withRouter(ProductivityToolsPage);
+export default withRouter(List);

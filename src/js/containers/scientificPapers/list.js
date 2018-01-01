@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Divider } from "semantic-ui-react";
-import Gallery from "../components/galleries/papers/Gallery";
-import SearchInput from "../components/SeachInput";
-import GalleryKeywordFilter from "../components/galleries/papers/GalleryKeywordFilter";
-import { setScientificPapersKeywordFilter, setScientificPapersTextFilter } from "../actions/scientificPapers";
+import Gallery from "../../components/scientificPapers/gallery";
+import SearchInput from "../../components/SeachInput";
+import GalleryKeywordFilter from "../../components/scientificPapers/galleryKeywordFilter";
+import { setScientificPapersKeywordFilter, setScientificPapersTextFilter } from "../../actions/scientificPapers";
 
 
 const getVisiblePapers = (scientificPapers, filter) => {
@@ -40,16 +40,20 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const ScientificPapersPage = connect(mapStateToProps, mapDispatchToProps)(({
+const List = connect(mapStateToProps, mapDispatchToProps)(({
   scientificPapers, setKeywordFilter, setTextFilter, textFilter, keywords,
 }) => (
   <div>
     <GalleryKeywordFilter keywords={keywords} setKeywordFilter={setKeywordFilter} />
     <Divider horizontal content="OR" style={{ marginBottom: "0" }} />
     <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
-    <Gallery scientificPapers={scientificPapers} setTextFilter={setTextFilter} textFilter={textFilter} />
+    <Gallery
+      scientificPapers={scientificPapers}
+      setTextFilter={setTextFilter}
+      textFilter={textFilter}
+    />
   </div>
 ));
 
-export default ScientificPapersPage;
+export default List;
 

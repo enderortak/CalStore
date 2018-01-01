@@ -3,8 +3,8 @@ import propTypes from "prop-types";
 import { Item, Icon, Label, Image, Popup } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import ScientificPaperDetails from "./ScientificPaperDetails";
-import "../../../../style/components/galleries/GalleryItem.scss";
+import ScientificPaperDetails from "./details";
+import "./style/galleryItem.scss";
 
 
 const featuredDisplay = isFeatured => (
@@ -75,7 +75,7 @@ GalleryItem.defaultProps = {
   abstract: "", affiliation: "", publishedIn: "", textFilter: "",
 };
 
-class GalleryItemWithDetails extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class GalleryItemWithDetails extends React.Component {
   render() {
     return (<ScientificPaperDetails {...this.props} trigger={<GalleryItem {...this.props} />} />);
   }
