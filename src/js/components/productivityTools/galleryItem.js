@@ -1,5 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
@@ -21,11 +22,10 @@ const imageUrl = {
 
 const GalleryItem = ({
   name, type, description, author, addedOn, numOfDownloads, numOfComments,
-  rating, textFilter, ...props
+  rating, textFilter, id, ...props
 }) => // eslint-disable-line react/prefer-stateless-function
   (
-
-    <Card {...pickHTMLProps(props)} className="gallery-item">
+    <NavLink to="/ProductivityTools/Details" {...pickHTMLProps(props)} className="card gallery-item">
       <div className="image" style={{ textAlign: "center" }}>
         <Image
           src={imageUrl[type]}
@@ -67,11 +67,12 @@ const GalleryItem = ({
           <span><i className="comment outline icon" />{numOfComments.toString()} Comments</span>
         </div>
       </Card.Content>
-    </Card>
+    </NavLink>
   );
 
 
 GalleryItem.propTypes = {
+  id: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   description: propTypes.string,
@@ -89,7 +90,7 @@ GalleryItem.defaultProps = {
 
 class GalleryItemWithDetails extends React.Component {
   render() {
-    return (<Details {...this.props} trigger={<GalleryItem {...this.props} />} />);
+    return (<GalleryItem {...this.props} />);
   }
 }
 

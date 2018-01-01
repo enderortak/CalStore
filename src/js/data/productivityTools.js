@@ -14,6 +14,7 @@ const productivityTools = [];
 for (let i = 0; i < 10; i += 1) {
   for (let k = 0; k < toolTypes.length; k += 1) {
     productivityTools.push({
+      id: "1",
       name: `${toolTypesSemantic[k]} ${i + 1}`,
       imageUrl: "",
       type: toolTypes[k],

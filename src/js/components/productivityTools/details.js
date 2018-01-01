@@ -46,8 +46,8 @@ const ProductivityToolDetails = ({
   trigger, isFeatured, name, version, type, author, addedOn,
   lastUpdatedOn, description, numOfDownloads, rating,
 }) => (
-  <Modal trigger={trigger} closeIcon >
-    {featuredDisplay(isFeatured)}
+  [
+    featuredDisplay(isFeatured),
     <Modal.Content image scrolling style={{ alignItems: "flex-start" }}>
       <Image
         src={imageUrl[type]}
@@ -124,12 +124,12 @@ exports class MyComponent extends React.Component {
         <Comments />
       </Modal.Description>
 
-    </Modal.Content>
+    </Modal.Content>,
     <Modal.Actions>
       <div style={{ float: "left" }} />
       {actions("#")}
-    </Modal.Actions>
-  </Modal>
+    </Modal.Actions>,
+  ]
 );
 
 ProductivityToolDetails.propTypes = {
