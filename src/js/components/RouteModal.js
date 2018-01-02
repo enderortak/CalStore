@@ -1,30 +1,33 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Modal } from "semantic-ui-react";
-import { withRouter, NavLink } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 class RouteModal extends React.Component {
   constructor() {
     super();
-    this.state = { open: false };
+    this.state = { open: true };
   }
-  componentDidMount() {
-    this.props.history.listen((location) => {
-    //   alert('asd');
-      this.setState(() => ({ open: location.pathname === this.props.route }));
-    });
+  close() {
+    this.setState({ open: false });
+    this.props.history.push(this.props.parentPath);
   }
-  render() {
+  modal() {
     return (
-      <Modal open={this.state.open} onClose={() => { this.setState(() => ({ open: false })); }}>
+      <Modal open={this.state.open} onClose={() => this.close()} closeIcon close={() => this.close()} >
         {this.props.children}
       </Modal>
     );
   }
+  render() {
+    return (
+      <Route exact path={this.props.path} render={() => this.modal()} />
+    );
+  }
 }
 RouteModal.propTypes = {
-  route: propTypes.string.isRequired,
-  history: propTypes.object.isRequired,
+  parentPath: propTypes.string.isRequired,
+  path: propTypes.string.isRequired,
   children: propTypes.node.isRequired,
 };
 

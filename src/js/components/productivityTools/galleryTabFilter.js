@@ -1,18 +1,23 @@
 import React from "react";
 import propTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 
-const Link = props => (<NavLink {...props} className="item" />);
-const GalleryTabFilter = ({ filters }) => (
-  <div className="ui secondary pointing menu">
+const GalleryTabFilter = ({ filters, setTypeFilter, typeFilter }) => (
+  <Menu secondary pointing>
     {filters.map(filter => (
-      <Link to={filter.url} key={filter.url}>{filter.name}</Link>
+      <Menu.Item
+        onClick={() => setTypeFilter(filter.key)}
+        key={filter.key}
+        active={filter.key === typeFilter}
+      >{filter.name}
+      </Menu.Item>
     ))}
-  </div>
+  </Menu>
 );
 
 GalleryTabFilter.propTypes = {
   filters: propTypes.arrayOf(propTypes.object).isRequired,
+  setTypeFilter: propTypes.func.isRequired,
 };
 
 export default GalleryTabFilter;

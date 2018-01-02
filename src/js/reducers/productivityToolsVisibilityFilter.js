@@ -1,4 +1,4 @@
-const productivityToolsVisibilityFilter = (state = { typeFilter: "SHOW_ALL", textFilter: undefined }, action) => {
+const productivityToolsVisibilityFilter = (state = { typeFilter: "All", textFilter: undefined }, action) => {
   switch (action.type) {
     case "SET_UTILITY_TOOLS_TYPE_FILTER":
       return { ...state, typeFilter: action.filter };

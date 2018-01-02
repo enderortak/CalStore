@@ -1,9 +1,87 @@
 import React from "react";
 import propTypes from "prop-types";
 import { Modal, Image, Header, Label, Button, Table, Rating, Segment } from "semantic-ui-react";
+import ControlledModal from "../ControlledModal";
 import Comments from "./comments";
 
-const actions = url => ([
+
+const ProductivityToolDetails = ({
+  trigger, isFeatured, name, version, type, author, addedOn,
+  lastUpdatedOn, description, numOfDownloads, rating,
+}) =>
+
+  (
+    <ControlledModal trigger={trigger}>
+      {featuredDisplay(isFeatured)}
+      <Modal.Content image scrolling style={{ alignItems: "flex-start" }}>
+        <Image
+          src={imageUrl[type]}
+          alt="Productivity tool"
+          style={{ maxWidth: "200px" }}
+        />
+        <Modal.Description>
+          <Header content={name} />
+          <DefinitionTable definitions={[
+            { key: "Tool type", value: semanticType[type] },
+            { key: "Description", value: description },
+            { key: "Version", value: version },
+            { key: "Author", value: author },
+            { key: "Added on", value: addedOn },
+            { key: "Last updated on", value: lastUpdatedOn },
+            { key: "Downloads", value: numOfDownloads },
+            { key: "Rating", value: <Rating icon="star" defaultRating={rating} maxRating={5} disabled /> },
+            { key: "How to use", value: <HowToUse /> },
+          ]}
+          />
+          <Comments />
+        </Modal.Description>
+
+      </Modal.Content>
+      <Modal.Actions>
+        <div style={{ float: "left" }} />
+        {actions("#", () => closeModal())}
+      </Modal.Actions>
+    </ControlledModal>
+  );
+
+
+ProductivityToolDetails.propTypes = {
+  trigger: propTypes.node.isRequired,
+  isFeatured: propTypes.bool.isRequired,
+  name: propTypes.string.isRequired,
+  version: propTypes.string,
+  type: propTypes.string.isRequired,
+  author: propTypes.string.isRequired,
+  addedOn: propTypes.string.isRequired,
+  lastUpdatedOn: propTypes.string.isRequired,
+  description: propTypes.string,
+  numOfDownloads: propTypes.number.isRequired,
+  rating: propTypes.number.isRequired,
+  closeModal: propTypes.func.isRequired,
+};
+
+ProductivityToolDetails.defaultProps = {
+  version: "", description: "",
+};
+
+
+const DefinitionTable = ({ definitions }) =>
+  (
+    <Table definition>
+      <Table.Body>
+        {
+       definitions.map(definition =>
+         (
+           <Table.Row key={definition.key}>
+             <Table.Cell content={definition.key} />
+             <Table.Cell content={definition.value} />
+           </Table.Row>
+         ))
+        }
+      </Table.Body>
+    </Table>
+  );
+const actions = (url, close) => ([
   <Button color="green" icon="download" content="Download" as="a" href={url} key="download" />,
   <Button
     color="blue"
@@ -13,7 +91,7 @@ const actions = url => ([
     href="mailto:?subject=This may interest you&body=http://localhost:9001/ProductivityTools"
     key="share"
   />,
-  <Button color="black" icon="close" content="Close" key="close" />,
+  <Button color="black" icon="close" content="Close" key="close" onClick={() => close()} />,
 ]);
 
 const featuredDisplay = isFeatured => (
@@ -42,113 +120,33 @@ const imageUrl = {
   ATI_INCA_SCRIPT: "https://www.etas.com/data/products_measurement_data_analysis/icon_mda.png",
 };
 
-const ProductivityToolDetails = ({
-  trigger, isFeatured, name, version, type, author, addedOn,
-  lastUpdatedOn, description, numOfDownloads, rating,
-}) => (
-  [
-    featuredDisplay(isFeatured),
-    <Modal.Content image scrolling style={{ alignItems: "flex-start" }}>
-      <Image
-        src={imageUrl[type]}
-        alt="Productivity tool"
-        style={{ maxWidth: "200px" }}
-      />
-      <Modal.Description>
-        <Header content={name} />
-        <Table definition>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell content="Tool type" />
-              <Table.Cell content={semanticType[type]} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Description" />
-              <Table.Cell content={description} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Version" />
-              <Table.Cell content={version} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Author" />
-              <Table.Cell content={author} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Added on" />
-              <Table.Cell content={addedOn} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Last updated on" />
-              <Table.Cell content={lastUpdatedOn} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Downloads" />
-              <Table.Cell content={numOfDownloads} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell content="Rating" />
-              <Table.Cell content={<Rating icon="star" defaultRating={rating} maxRating={5} disabled />} />
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell verticalAlign="top" content="How to use" />
-              <Table.Cell>
-                <Header as="h5" content="Installing" />
-                <p>Use npm to install react-moment along with its peer dependency, moment.</p>
-                <Segment>
-                  <code><pre>npm install --save moment react-moment</pre></code>
-                </Segment>
-                <Header as="h5" content="Quick Start" />
-                <Segment>
-                  <code>
-                    <pre>
-                      {`
+const HowToUse = () => (
+  <div>
+    <Header as="h5" content="Installing" />
+    <p>Use npm to install react-moment along with its peer dependency, moment.</p>
+    <Segment>
+      <code><pre>npm install --save moment react-moment</pre></code>
+    </Segment>
+    <Header as="h5" content="Quick Start" />
+    <Segment>
+      <code>
+        <pre>
+          {`
 import React  from 'react';
 import Moment from 'react-moment';
 
 exports class MyComponent extends React.Component {
-  render() {
-    return (
-        const dateToFormat = '1976-04-19T12:59-0500';
-        <Moment>{dateToFormat}</Moment>
-    );
-  }
-}`}
-                    </pre>
-                  </code>
-                </Segment>
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-        <Comments />
-      </Modal.Description>
-
-    </Modal.Content>,
-    <Modal.Actions>
-      <div style={{ float: "left" }} />
-      {actions("#")}
-    </Modal.Actions>,
-  ]
+render() {
+return (
+  const dateToFormat = '1976-04-19T12:59-0500';
+  <Moment>{dateToFormat}</Moment>
 );
-
-ProductivityToolDetails.propTypes = {
-  trigger: propTypes.node.isRequired,
-  isFeatured: propTypes.bool.isRequired,
-  name: propTypes.string.isRequired,
-  version: propTypes.string,
-  type: propTypes.string.isRequired,
-  author: propTypes.string.isRequired,
-  addedOn: propTypes.string.isRequired,
-  lastUpdatedOn: propTypes.string.isRequired,
-  description: propTypes.string,
-  numOfDownloads: propTypes.number.isRequired,
-  rating: propTypes.number.isRequired,
-};
-
-ProductivityToolDetails.defaultProps = {
-  version: "", description: "",
-};
-
+}
+}`}
+        </pre>
+      </code>
+    </Segment>
+  </div>
+);
 export default ProductivityToolDetails;
 

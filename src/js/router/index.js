@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { ModalContainer, ModalRoute } from 'react-router-modal';
+// import { ModalContainer, ModalRoute } from 'react-router-modal';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import ListProductivityToolsPage from "../containers/productivityTools/list";
 import ListScientificPapersPage from "../containers/scientificPapers/list";
@@ -17,16 +17,12 @@ const MainRouter = props => (
     atActive={{ opacity: 1, left: spring(3, { stiffness: 150, damping: 14 }) }}
     className="switch-wrapper"
   >
-    <Redirect from="/ProductivityTools" exact to="/ProductivityTools/All" />
     <Route path="/ProductivityTools" component={ListProductivityToolsPage} />
-    <ModalRoute component={ProductivityToolDetails} path="/ProductivityTools/Details" className="ui modal" />
     <Route path="/ScientificPapers" component={ListScientificPapersPage} />
     <Route path="/TechnicalPresentations" component={TechnicalPresentationsPage} />
     <Route path="/ProductivityTools/Add" component={AddProductivityToolPage} />
-    <ModalContainer />
   </AnimatedSwitch>
 );
 
-const a = "";
 
-export { MainRouter, a };
+export { MainRouter };

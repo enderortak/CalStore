@@ -1,9 +1,9 @@
 const filters = [
-  { url: "/ProductivityTools/All", name: "All" },
-  { url: "/ProductivityTools/MatlabTools", name: "Matlab Tools" },
-  { url: "/ProductivityTools/ConcertoScripts", name: "Concerto Scripts" },
-  { url: "/ProductivityTools/ExcelMacros", name: "Excel Macros" },
-  { url: "/ProductivityTools/AtiIncaScripts", name: "ATI/INCA Scripts" },
+  { key: "All", name: "All" },
+  { key: "MatlabTools", name: "Matlab Tools" },
+  { key: "ConcertoScripts", name: "Concerto Scripts" },
+  { key: "ExcelMacros", name: "Excel Macros" },
+  { key: "AtiIncaScripts", name: "ATI/INCA Scripts" },
 ];
 
 export default filters;

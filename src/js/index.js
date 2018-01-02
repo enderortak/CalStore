@@ -5,6 +5,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider as ReduxStoreScope } from "react-redux";
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { BrowserRouter } from "react-router-dom";
+import { ModalContainer } from "react-router-modal";
 import { AppContainer as HMRScope } from 'react-hot-loader';
 import reducerCollection from "./reducers/_collection";
 // import subscriptionCollection from "./subscriptions/_collection";
@@ -27,7 +29,7 @@ const store = createStore(
 
 if (module.hot) module.hot.accept();
 
-document.body.innerHTML = '<div id="root"></div>';
+document.body.innerHTML = '<div id="root"></div><div id="modal"></div>';
 
 
 // store.subscribe(() => {
@@ -39,9 +41,9 @@ render(
 
   <ReduxStoreScope store={store}>
     <HMRScope>
-      <ConnectedRouter history={history}>
+      <BrowserRouter>
         <App />
-      </ConnectedRouter>
+      </BrowserRouter>
     </HMRScope>
   </ReduxStoreScope>
 
