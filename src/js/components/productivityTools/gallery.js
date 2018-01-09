@@ -3,20 +3,30 @@ import propTypes from "prop-types";
 import FlipMove from "react-flip-move";
 import GalleryItem from "./GalleryItem";
 
-const Gallery = ({ productivityTools, textFilter, match }) => (
-  <div className="ui link cards gallery" style={{ position: "relative", padding: "0" }}>
 
-    {
-        productivityTools.map(tool =>
-          (<GalleryItem
-            key={tool.name}
-            textFilter={textFilter}
-            {...tool}
-          />))
-      }
-
-  </div>
-);
+class Gallery extends React.Component {
+  state = {
+    animating: false,
+  }
+  handleAnimationStart() {}
+  render() {
+    const { productivityTools, textFilter } = this.props;
+    return (
+      <div className="ui link cards gallery" style={{ position: "relative", padding: "0" }}>
+        <FlipMove duration={500} easing="ease-out" typeName={null} >
+          {
+            productivityTools.map((tool, index) =>
+              (<GalleryItem
+                key={index}
+                textFilter={textFilter}
+                {...tool}
+              />))
+          }
+        </FlipMove>
+      </div>
+    );
+  }
+}
 
 Gallery.propTypes = {
   productivityTools: propTypes.arrayOf(propTypes.object).isRequired,
