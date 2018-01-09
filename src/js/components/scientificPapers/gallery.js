@@ -7,9 +7,9 @@ const Gallery = ({ scientificPapers, textFilter }) => (
   <div className="ui link divided items gallery" style={{ position: "relative", padding: "0" }}>
     <FlipMove duration={500} easing="ease-out" typeName={null} >
       {
-        scientificPapers.map(paper => (
+        scientificPapers.map((paper, index) => (
           <GalleryItem
-            key={paper.title}
+            key={index}
             textFilter={textFilter}
             {...paper}
           />

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import Details from "./details";
+import Details from "./ItemDetails";
 import "./style/galleryItem.scss";
 
 const semanticType = {

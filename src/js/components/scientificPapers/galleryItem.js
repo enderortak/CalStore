@@ -42,7 +42,7 @@ const GalleryItem = ({
         </Item.Description>
         <Item.Description>
           <span>Tags:</span>
-          {keywords.map(k => <Label color="blue" tag content={k} key={k} style={{ opacity: "0.7", marginLeft: "2em" }} />)}
+          {keywords.map((k, i) => <Label color="blue" tag content={k} key={i} style={{ opacity: "0.7", marginLeft: "2em" }} />)}
         </Item.Description>
         <Item.Extra>
           <span><Icon name="download" />{numOfDownloads} downloads</span>

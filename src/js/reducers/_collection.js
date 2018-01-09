@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { routerReducer } from "react-router-redux";
 import productivityToolsVisibilityFilter from "./productivityToolsVisibilityFilter";
 import productivityTools from "./productivityTools";
 import scientificPapers from "./scientificPapers";
@@ -13,7 +12,6 @@ const reducerCollection = combineReducers({
   scientificPapers,
   scientificPapersVisibilityFilter,
   scientificPapersKeywordList,
-  router: routerReducer,
 });
 
 export default reducerCollection;

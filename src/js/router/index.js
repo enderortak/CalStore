@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 // import { ModalContainer, ModalRoute } from 'react-router-modal';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import ListProductivityToolsPage from "../containers/productivityTools/list";
+import ListProductivityToolsPage from "../containers/productivityTools/ListView";
 import ListScientificPapersPage from "../containers/scientificPapers/list";
 import TechnicalPresentationsPage from "../containers/TechnicalPresentationsPage";
-import AddProductivityToolPage from "../containers/productivityTools/add";
-import ProductivityToolDetails from "../components/productivityTools/details";
+
+import ProductivityToolDetails from "../components/productivityTools/ItemDetails";
 import "../../style/route-animations.scss";
 
 const MainRouter = props => (
@@ -17,11 +17,13 @@ const MainRouter = props => (
     atActive={{ opacity: 1, left: spring(3, { stiffness: 150, damping: 14 }) }}
     className="switch-wrapper"
   >
-    <Route path="/ProductivityTools" component={ListProductivityToolsPage} />
+    <Redirect exact path="/ProductivityTools" to="/ProductivityTools/All" />
+    <Route path="/ProductivityTools/:filter" component={ListProductivityToolsPage} />
     <Route path="/ScientificPapers" component={ListScientificPapersPage} />
     <Route path="/TechnicalPresentations" component={TechnicalPresentationsPage} />
-    <Route path="/ProductivityTools/Add" component={AddProductivityToolPage} />
+
   </AnimatedSwitch>
+
 );
 
 

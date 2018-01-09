@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server --progress --colors --inline"
+    "start:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server -d --progress --colors --inline"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-router-transition": "^1.1.2",
     "react-shuffle": "^2.1.0",
+    "react-toastify": "^3.2.1",
     "redux": "^3.7.2",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1"
