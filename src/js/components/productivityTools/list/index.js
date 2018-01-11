@@ -3,13 +3,14 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link, Route } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import Gallery from "../../components/productivityTools/Gallery";
-import GalleryTabFilter from "../../components/productivityTools/GalleryTabFilter";
-import SearchInput from "../../components/SeachInput";
+import Gallery from "./gallery";
+import Tabs from "./tabs";
+import SearchInput from "../../shared/seachInput";
+
 // import AddToolButton from "../../containers/productivityTools/AddView";
-import AddProductivityToolPage from "./AddView";
-import { setProductivityToolsTypeFilter, setProductivityToolsTextFilter } from "../../actions/productivityTools";
-import filters from "../../data/filters";
+import AddProductivityToolPage from "../add";
+import { setProductivityToolsTypeFilter, setProductivityToolsTextFilter } from "../../../data/actions/productivityTools";
+import filters from "../../../data/static/filters";
 
 
 const getVisibleProductivityTools = (productivityTools, filter) => {
@@ -84,11 +85,11 @@ class List extends React.Component {
       <div>
         <Button as={Link} to="/ProductivityTools/Add"> Add</Button>
         <Route path="/ProductivityTools/Add" component={AddProductivityToolPage} />
-        <GalleryTabFilter filters={filters} />
+        <Tabs filters={filters} />
         <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
-
         <Gallery
           productivityTools={productivityTools}
+          setTextFilter={setTextFilter}
           textFilter={textFilter}
         />
       </div>

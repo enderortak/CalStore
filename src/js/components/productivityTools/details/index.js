@@ -1,8 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Modal, Image, Header, Label, Button, Rating, Segment } from "semantic-ui-react";
-import DefinitionTable from "../DefinitionTable";
-import Comments from "./comments";
+import { Modal, Image, Header, Label as SLabel, Button, Rating, Segment, Comment, Form } from "semantic-ui-react";
+import DefinitionTable from "../../shared/definitionTable";
 
 
 export default class ProductivityToolDetails extends React.Component {
@@ -82,7 +81,7 @@ const ModalActions = ({ url, close }) => ([
 
 const FeaturedDisplay = ({ isFeatured }) => (
   isFeatured ?
-    <Label
+    <SLabel
       ribbon="left"
       size="large"
       color="red"
@@ -136,3 +135,39 @@ const imageUrl = {
   ATI_INCA_SCRIPT: "https://www.etas.com/data/products_measurement_data_analysis/icon_mda.png",
 };
 
+const CommentLayout = ({
+  name, time, text, children,
+}) => (
+  <Comment>
+    <Comment.Avatar as="a" src="http://www.pieglobal.com/wp-content/uploads/2015/10/placeholder-user.png" />
+    <Comment.Content>
+      <Comment.Author as="a">{name}</Comment.Author>
+      <Comment.Metadata>
+        <span>{time}</span>
+      </Comment.Metadata>
+      <Comment.Text>{text}</Comment.Text>
+      <Comment.Actions>
+        <a>Reply</a>
+      </Comment.Actions>
+    </Comment.Content>
+    {children}
+  </Comment>
+);
+
+const Comments = () => (
+  <Comment.Group threaded>
+    <Header as="h3" dividing>Comments</Header>
+
+    <CommentLayout name="Matt" time="Today at 5:42PM" text="How artistic!" />
+    <CommentLayout name="Elliot Fu" time="Yesterday at 12:30AM" text="This has been very useful for my research. Thanks as well!" >
+      <Comment.Group>
+        <CommentLayout name="Jenny Hess" time="Just now" text="Thanks Elliot :)" />
+      </Comment.Group>
+    </CommentLayout>
+    <CommentLayout name="Joe Henderson" time="5 days ago" text="Dude, this is awesome. Thanks so much" />
+    <Form reply>
+      <Form.TextArea style={{ height: "5em" }} />
+      <Button size="small" content="Add Comment" labelPosition="left" icon="edit" primary />
+    </Form>
+  </Comment.Group>
+);

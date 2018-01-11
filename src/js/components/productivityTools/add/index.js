@@ -4,7 +4,7 @@ import { Modal, Button } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import AddProductivityToolForm from "../../components/productivityTools/AddForm";
+import AddProductivityToolForm from "./form";
 
 
 class AddProductivityTool extends React.Component {
@@ -32,10 +32,11 @@ class AddProductivityTool extends React.Component {
         o.formData[name] = value;
         return o;
       });
+
     testSubmit = () => {
       console.log(this.state.formData);
       toast("Wow so easy !");
-      this.handleClose();
+      // this.handleClose();
     }
     handleSubmit = () => {
       const form = { ...this.state.formData };
@@ -127,11 +128,10 @@ class AddProductivityTool extends React.Component {
           <Modal.Header content="Add new tool" />
           <Modal.Content
             style={{ overflow: "visible" }}
-            scrolling
             content={
               <AddProductivityToolForm
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleSubmit}
+                handleFormSubmit={this.testSubmit}
                 selectedType={this.state.formData.type}
                 isProcessing={this.state.processing}
                 userDropdownData={this.state.formUserDropdownOptions}

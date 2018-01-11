@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Modal, Image, Header, Label, Button, Icon } from "semantic-ui-react";
-import DefinitionTable from "../DefinitionTable";
+import { Modal, Image, Header, Label as SLabel, Button, Icon } from "semantic-ui-react";
+import DefinitionTable from "../../shared/definitionTable";
 
 export default class ScientificPaperDetails extends React.Component {
   static propTypes = {
@@ -44,7 +44,7 @@ export default class ScientificPaperDetails extends React.Component {
           value: {
             style: { lineHeight: "2.5em" },
             content: keywords.map(k =>
-              <Label tag color="blue" content={k} key={k} style={{ opacity: "0.6", marginLeft: "2em" }} />),
+              <SLabel tag color="blue" content={k} key={k} style={{ opacity: "0.6", marginLeft: "2em" }} />),
           },
         },
         { key: "Authors", value: authors.join(", ") },
@@ -94,7 +94,7 @@ const ModalActions = ({ url, close }) => ([
 
 const FeaturedDisplay = ({ isFeatured }) => (
   isFeatured ?
-    <Label
+    <SLabel
       ribbon="left"
       size="large"
       color="red"

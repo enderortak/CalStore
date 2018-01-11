@@ -1,7 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Form, Icon, Button, TextArea } from "semantic-ui-react";
-
+import { Form, Icon, Button, TextArea, ProgressBar } from "semantic-ui-react";
+import axios from "axios";
+import ImageInput from "../../shared/imageInput";
+import FileInput from "../../shared/fileInput";
 
 const AddProductivityToolForm =
 ({
@@ -9,14 +11,18 @@ const AddProductivityToolForm =
   userDropdownData, userDropdownLoading,
 }) => (
   <Form>
+    <FileInput />
     <Form.Group>
       {nameInput("name", handleInputChange)}
       {typeInput("type", handleInputChange, selectedType)}
     </Form.Group>
-    <Form.Field>{descriptionInput("description", handleInputChange)}</Form.Field>
+    {descriptionInput("description", handleInputChange)}
     <Form.Group>
       {authorInput("author", handleInputChange, userDropdownData, userDropdownLoading)}
       {versionInput("version", handleInputChange)}
+    </Form.Group>
+    <Form.Group>
+      {imageInput("name", handleInputChange)}
     </Form.Group>
     {submitButton(handleFormSubmit, isProcessing)}
   </Form>
@@ -35,6 +41,7 @@ AddProductivityToolForm.defaultProps = {
 };
 const nameInput = (name, handleInputChange) =>
   (<Form.Input
+    required
     name={name}
     label="Tool Name"
     placeholder="Tool Name"
@@ -44,9 +51,9 @@ const nameInput = (name, handleInputChange) =>
 const types = ["Matlab Tool", "Concerto Script", "Excel Macro", "Vision/INCA Script"];
 const typeInput = (name, handleInputChange, selectedType) =>
   (
-    <Form.Field width={6}>
-      <label htmlFor={name}>Tool Type
-        {
+    <Form.Field width={6} required>
+      <label htmlFor={name}>Tool Type</label>
+      {
       types.map((type, index) => (
         <Form.Radio
           style={{ fontWeight: "normal" }}
@@ -58,23 +65,25 @@ const typeInput = (name, handleInputChange, selectedType) =>
           onChange={handleInputChange}
         />
     ))}
-      </label>
+
     </Form.Field>
   );
 const descriptionInput = (name, handleInputChange) =>
   (
-    <label htmlFor="description" >Description
+    <Form.Field>
+      <label htmlFor="description" >Description</label>
       <TextArea
         rows="3"
         name={name}
         placeholder="Description"
         onChange={handleInputChange}
       />
-    </label>
+    </Form.Field>
   );
 const authorInput = (name, handleInputChange, data, loading) =>
   (
     <Form.Dropdown
+      required
       selection
       multiple
       search
@@ -120,6 +129,15 @@ const submitButton = (handleSubmit, isProcessing) =>
       />
     </div>
   );
+
+const imageInput = (name, handleInputChange) =>
+  (<Form.Field
+    label="Image"
+    width={8}
+    control={ImageInput}
+    name={name}
+    onChange={handleInputChange}
+  />);
 
 export default AddProductivityToolForm;
 

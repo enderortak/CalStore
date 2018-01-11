@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import FlipMove from "react-flip-move";
-import GalleryItem from "./galleryItem";
+import GalleryItem from "./item";
 
 const Gallery = ({ scientificPapers, textFilter }) => (
   <div className="ui link divided items gallery" style={{ position: "relative", padding: "0" }}>

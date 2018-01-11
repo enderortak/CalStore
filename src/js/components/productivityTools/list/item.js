@@ -1,11 +1,11 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Card, Icon, Rating, Image } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import Details from "./ItemDetails";
-import "./style/galleryItem.scss";
+import Details from "../details";
+import "../style/galleryItem.scss";
 
 const semanticType = {
   MATLAB_TOOL: "Matlab Tool",
@@ -20,7 +20,7 @@ const imageUrl = {
   ATI_INCA_SCRIPT: "https://www.etas.com/data/products_measurement_data_analysis/icon_mda.png",
 };
 
-const GalleryItem = ({
+const Item = ({
   name, type, description, author, addedOn, numOfDownloads, numOfComments,
   rating, textFilter, id, ...props
 }) => // eslint-disable-line react/prefer-stateless-function
@@ -71,7 +71,7 @@ const GalleryItem = ({
   );
 
 
-GalleryItem.propTypes = {
+Item.propTypes = {
   id: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
@@ -84,14 +84,14 @@ GalleryItem.propTypes = {
   textFilter: propTypes.string,
 };
 
-GalleryItem.defaultProps = {
+Item.defaultProps = {
   description: "", textFilter: "",
 };
 
-class GalleryItemWithDetails extends React.Component {
+class ItemWithDetails extends React.Component {
   render() {
-    return (<Details trigger={<GalleryItem {...this.props} />} {...this.props} />);
+    return (<Details trigger={<Item {...this.props} />} {...this.props} />);
   }
 }
 
-export default GalleryItemWithDetails;
+export default ItemWithDetails;

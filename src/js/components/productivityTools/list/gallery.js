@@ -1,7 +1,8 @@
 import React from "react";
 import propTypes from "prop-types";
 import FlipMove from "react-flip-move";
-import GalleryItem from "./GalleryItem";
+
+import Item from "./item";
 
 
 class Gallery extends React.Component {
@@ -10,19 +11,25 @@ class Gallery extends React.Component {
   }
   handleAnimationStart() {}
   render() {
-    const { productivityTools, textFilter } = this.props;
+    const {
+      productivityTools, textFilter, typeFilters, setTextFilter,
+    } = this.props;
     return (
-      <div className="ui link cards gallery" style={{ position: "relative", padding: "0" }}>
-        <FlipMove duration={500} easing="ease-out" typeName={null} >
-          {
+      <div>
+
+
+        <div className="ui link cards gallery" style={{ position: "relative", padding: "0" }}>
+          <FlipMove duration={500} easing="ease-out" typeName={null} >
+            {
             productivityTools.map((tool, index) =>
-              (<GalleryItem
+              (<Item
                 key={index}
                 textFilter={textFilter}
                 {...tool}
               />))
           }
-        </FlipMove>
+          </FlipMove>
+        </div>
       </div>
     );
   }
@@ -31,10 +38,13 @@ class Gallery extends React.Component {
 Gallery.propTypes = {
   productivityTools: propTypes.arrayOf(propTypes.object).isRequired,
   textFilter: propTypes.string,
+  // typeFilters: propTypes.arrayOf(propTypes.obj).isRequired,
+  setTextFilter: propTypes.func.isRequired,
 };
 
 Gallery.defaultProps = {
   textFilter: "",
 };
+
 
 export default Gallery;

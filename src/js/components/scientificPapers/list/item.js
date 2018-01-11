@@ -1,17 +1,17 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Item, Icon, Label, Image, Popup } from "semantic-ui-react";
+import { Item, Icon, Label as SLabel, Image, Popup } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
-import ScientificPaperDetails from "./details";
-import "./style/galleryItem.scss";
+import ScientificPaperDetails from "../details";
+import "../style/galleryItem.scss";
 
 
 const featuredDisplay = isFeatured => (
   isFeatured ?
     <Popup
       trigger={
-        <Label corner="left" color="red" ><Icon name="star" /></Label>
+        <SLabel corner="left" color="red" ><Icon name="star" /></SLabel>
       }
       content={<div><Icon name="star" />Featured Content</div>}
     />
@@ -42,7 +42,7 @@ const GalleryItem = ({
         </Item.Description>
         <Item.Description>
           <span>Tags:</span>
-          {keywords.map((k, i) => <Label color="blue" tag content={k} key={i} style={{ opacity: "0.7", marginLeft: "2em" }} />)}
+          {keywords.map((k, i) => <SLabel color="blue" tag content={k} key={i} style={{ opacity: "0.7", marginLeft: "2em" }} />)}
         </Item.Description>
         <Item.Extra>
           <span><Icon name="download" />{numOfDownloads} downloads</span>

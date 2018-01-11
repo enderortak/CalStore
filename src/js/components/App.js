@@ -1,7 +1,7 @@
 import React from "react";
 import { ToastContainer } from 'react-toastify';
-import Navigation from "./Navigation";
-import { MainRouter } from "../router";
+import Navigation from "./shared/navigation";
+import { MainRouter } from "../router.js";
 import "../../style/components/App.scss";
 
 const App = () => (

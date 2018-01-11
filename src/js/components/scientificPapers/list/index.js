@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Divider } from "semantic-ui-react";
-import Gallery from "../../components/scientificPapers/gallery";
-import SearchInput from "../../components/SeachInput";
-import GalleryKeywordFilter from "../../components/scientificPapers/galleryKeywordFilter";
-import { setScientificPapersKeywordFilter, setScientificPapersTextFilter } from "../../actions/scientificPapers";
+import Gallery from "./gallery";
+import SearchInput from "../../shared/seachInput";
+import GalleryKeywordFilter from "./keywordFilter";
+import { setScientificPapersKeywordFilter, setScientificPapersTextFilter } from "../../../data/actions/scientificPapers";
 
 
 const getVisiblePapers = (scientificPapers, filter) => {

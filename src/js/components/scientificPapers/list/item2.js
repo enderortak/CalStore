@@ -4,8 +4,8 @@ import { Item, Icon, Label, Image, Popup } from "semantic-ui-react";
 import Highlighter from "react-highlighter";
 import { pickHTMLProps } from "pick-react-known-prop";
 import { withRouter, NavLink } from "react-router-dom";
-import ScientificPaperDetails from "./details2";
-import "./style/galleryItem.scss";
+import ScientificPaperDetails from "../details/details2";
+import "../style/galleryItem.scss";
 
 
 const featuredDisplay = isFeatured => (

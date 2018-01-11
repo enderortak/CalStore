@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../../assets/images/CalStoreLogo.png";
 import { Icon } from "semantic-ui-react";
+import logo from "../../../../assets/images/CalStoreLogo.png";
+
 // icon url: https://cdn6.aptoide.com/imgs/7/0/5/705d048076a299b3cde1fdcfc059d061_icon.png?w=240
 // font: Ford Antenna Medium - 28px
 // width: 178x45px
