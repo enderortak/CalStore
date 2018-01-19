@@ -61,11 +61,17 @@ export default class ImageInput extends React.Component {
             />
             <Label circular color="red" floating style={style.removeButton} onClick={() => this.setState(() => ({ imageUri: "" }))}><Icon name="remove" style={{ margin: "0" }} /></Label>
           </div>
-          <br />
           <Button primary style={style.button}>
-            <Icon name="upload" />
+            <Icon name="image" />
             { this.state.imageUri === "" ? "Select Image" : "Change Image" }
-            <input type="file" name="image" style={style.input} ref={(input) => { this.input = input; }} onChange={() => this.handleImageInputChange()} />
+            <input
+              type="file"
+              name="image"
+              style={style.input}
+              ref={(input) => { this.input = input; }}
+              onChange={() => this.handleImageInputChange()}
+              accept=".jpeg,.jpg,.png,.gif,.bmp,image/jpeg,image/png,image/gif,image/x-ms-bmp"
+            />
           </Button>
 
         </Segment>

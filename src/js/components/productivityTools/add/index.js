@@ -1,141 +1,191 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Modal, Button } from "semantic-ui-react";
-import { toast } from "react-toastify";
+import { Modal, Icon, Header } from "semantic-ui-react";
+import { toast, style as toastStyle } from "react-toastify";
 import { withRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
+import Joi from "joi-browser";
 import AddProductivityToolForm from "./form";
 
 
 class AddProductivityTool extends React.Component {
-  // static propTypes = {
-  //   trigger: propTypes.node.isRequired,
-  // }
+  static propTypes = {
+    history: propTypes.object.isRequired,
+    typeFilter: propTypes.string,
+  }
+  static defaultProps = { typeFilter: "" }
+  static remote = {
+    get: {
+      users: "http://localhost:3000/users",
+    },
+    post: {
+      productivityTool: "http://localhost:3000/productivityTools",
+    },
+  }
+  constructor(props) {
+    super(props);
+    this.getUserList = this.getUserList.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmitRequest = this.handleSubmitRequest.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+    this.handleXHRErrors = this.handleXHRErrors.bind(this);
+    this.handleValidationErrors = this.handleValidationErrors.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.handleFormSuccess = this.handleFormSuccess.bind(this);
+    this.handleNotFound = this.handleNotFound.bind(this);
+    this.handleInternalError = this.handleInternalError.bind(this);
+    this.handleServiceUnavailable = this.handleServiceUnavailable.bind(this);
+    this.handleNoAccessToServer = this.handleNoAccessToServer.bind(this);
+    this.handleUnknownError = this.handleUnknownError.bind(this);
+    this.handleBadRequest = this.handleBadRequest.bind(this);
+    this.handleFormSuccess = this.handleFormSuccess.bind(this);
+  }
     state = {
       modalOpen: true,
       processing: false,
-      formData: {},
-      formState: "",
-      formMessageHeader: "",
-      formMessage: "",
+      formData: { isFeatured: false },
       formUserDropdownOptions: [],
-      formUserDropdownLoading: false,
+      formUserDropdownLoading: true,
+      formValidationResult: [],
     }
-    handleOpen = () => this.setState({ modalOpen: true })
+    // handleOpen = () => this.setState({ modalOpen: true })
+
+    componentDidMount() {
+      this.getUserList();
+    }
+    getUserList = () => {
+      axios
+        .get(AddProductivityTool.remote.get.users)
+        .then((response) => {
+          this.setState(oldState => ({
+            ...oldState,
+            formUserDropdownOptions:
+              response.data.map(user => ({ text: user.name, value: user._id })),
+            formUserDropdownLoading: false,
+          }));
+        })
+        .catch(this.handleXHRErrors);
+    }
     handleClose = () => {
+      this.form.stopFormOperations();
       this.setState({ modalOpen: false });
       this.props.history.push(`/ProductivityTools/${this.props.typeFilter || "All"}`);
     }
+
     handleInputChange = (e, { name, value }) =>
       this.setState((oldState) => {
         const o = { ...oldState };
         o.formData[name] = value;
         return o;
       });
+      handleInputBlur = () =>
+        this.handleValidationErrors(this.validateForm(this.state.formData).error);
 
     testSubmit = () => {
       console.log(this.state.formData);
-      toast("Wow so easy !");
+      showSuccess("Wow so easy !");
       // this.handleClose();
     }
-    handleSubmit = () => {
+    handleSubmitRequest = () => {
       const form = { ...this.state.formData };
       form.addedOn = new Date().toISOString();
       form.lastUpdatedOn = new Date().toISOString();
       form.numOfDownloads = 0;
-      this.setState(oldState => ({ ...oldState, processing: true }));
-      fetch("http://localhost:3000/productivityTools", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      }).then((response) => {
-        if (!response.ok) {
-          response.json().then((d) => {
-            this.setState(oldState => ({
-              ...oldState,
-              formState: "error",
-              // formMessageHeader: `There was an error (${response.status} - ${response.statusText})`,
-              formMessage: d.message,
-              processing: false,
-            }));
-            toast(<div>{this.state.formMessageHeader}<br />{this.state.formMessage}</div>, {
-              position: toast.POSITION.TOP_CENTER,
-              type: toast.TYPE[this.state.formState.toUpperCase()],
-              autoClose: false,
-            });
-          });
-        } else {
-          this.setState(oldState => ({
-            ...oldState,
-            processing: false,
-          }));
-          this.handleClose();
-          console.log(response);
-          toast(<div>{this.state.formMessageHeader}<br />{this.state.formMessage}</div>, {
-            position: toast.POSITION.TOP_CENTER,
-            type: toast.TYPE[this.state.formState.toUpperCase()],
-          });
-        }
-      })
-        .catch((error) => {
-          this.setState(oldState => ({
-            ...oldState,
-            formState: "error",
-            // formMessageHeader: `There was an error (${error})`,
-            formMessage: "Please try again in a few moments. If the problem persists, please contact system administrator.",
-            processing: false,
-          }));
-          toast(<div>{this.state.formMessageHeader}<br />{this.state.formMessage}</div>, {
-            position: toast.POSITION.TOP_CENTER,
-            type: toast.TYPE[this.state.formState.toUpperCase()],
-          });
-        });
+      if (!this.validateForm(form).error) this.submitForm(form);
+      else this.handleValidationErrors(this.validateForm(form).error);
     };
 
-    componentWillMount() {
+    validateForm = (form) => {
+      const schema = Joi.object().keys({
+        name: Joi.string().alphanum().min(3).max(30)
+          .required()
+          .label("Tool name"),
+      });
+      const result = Joi.validate(this.state.formData, schema);
+      console.log(result);
+      return result;
+    }
+    handleValidationErrors = (error) => {
+      if (error === null) return;
+      this.setState(oldState => ({ ...oldState, formValidationResult: error.details }));
+    }
+    submitForm(form) {
+      this.setState(oldState => ({ ...oldState, processing: true }));
+      axios
+        .post(AddProductivityTool.remote.post.productivityTool, form, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then(this.handleFormSuccess)
+        .catch(this.handleXHRErrors);
+    }
+    handleXHRErrors(error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        const errorHandlers = {
+          400: this.handleBadRequest,
+          404: this.handleNotFound,
+          500: this.handleInternalError,
+          503: this.handleServiceUnavailable,
+        };
+        errorHandlers[error.response.status](error.response.data);
+      } else if (error.request) {
+        // The request was made but no response was received
+        this.handleNoAccessToServer();
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        this.handleUnknownError(error.message);
+      }
       this.setState(oldState => ({
         ...oldState,
-        formUserDropdownLoading: true,
+        processing: false,
       }));
-      fetch("http://localhost:3000/users", {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((response) => {
-        if (!response.ok) {
-          showError("Can not retrieve user data from server.");
-          return [];
-        }
-        return response.json();
-      }).then((data) => {
-        this.setState(oldState => ({
-          ...oldState,
-          formUserDropdownOptions: data.map(user => ({ text: user.name, value: user._id })),
-          formUserDropdownLoading: false,
-        }));
-      });
     }
+    tryAgainMessage = "Try again in a few minutes. If the problem persists, please contact administrator.";
+    contactAdminMessage = "Please contact administrator.";
+    handleNotFound = () => showError("Requested address was not found on the server", this.contactAdminMessage);
+    handleInternalError = () => showError("Encountered an internal server error", this.contactAdminMessage);
+    handleServiceUnavailable = () => showError("Service unavailable", `This is mostly related with a network problem. ${this.tryAgainMessage}`);
+    handleNoAccessToServer = () => showError("No response received from server", `This is mostly related with a network problem. ${this.tryAgainMessage}`);
+    handleUnknownError = () => showError("There was an unknown error", this.contactAdminMessage);
+    handleBadRequest = (data) => { Object.keys(data.errors).map(e => showError(data.errors[e].message)); }
+    handleFormSuccess(response) {
+      this.setState(oldState => ({
+        ...oldState,
+        processing: false,
+      }));
+      showSuccess("Tool added successfully");
+      this.handleClose();
+      console.log(response);
+    }
+
+
     render() {
-      // const trigger = React.cloneElement(this.props.trigger, { onClick: this.handleOpen, ...this.props.trigger.props });
       return ([
         <Route key={1} path={`/ProductivityTools/${this.props.typeFilter || "All"}`} />,
         <Modal key={2} open={this.state.modalOpen} onClose={this.handleClose} closeIcon >
-          <Modal.Header content="Add new tool" />
+          <Modal.Header>
+            <Icon name="plus" />Add new tool
+          </Modal.Header>
           <Modal.Content
             style={{ overflow: "visible" }}
             content={
               <AddProductivityToolForm
+                ref={(form) => { this.form = form; }}
+                onSubmit={(values) => { console.log(values); }}
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.testSubmit}
+                handleInputBlur={this.handleInputBlur}
+                handleFormSubmit={this.handleSubmitRequest}
+                validationResult={this.state.formValidationResult}
                 selectedType={this.state.formData.type}
                 isProcessing={this.state.processing}
                 userDropdownData={this.state.formUserDropdownOptions}
                 userDropdownLoading={this.state.formUserDropdownLoading}
+                isFeatured={this.state.isFeatured}
               />
             }
           />
@@ -145,14 +195,41 @@ class AddProductivityTool extends React.Component {
     }
 }
 
-const showError = message =>
-  toast(message, { position: toast.POSITION.TOP_CENTER, type: toast.TYPE.error, autoClose: false });
+const showError = (message, submessage) => {
+  console.log(message);
+  toastStyle({
+    width: "500px",
+    TOP_CENTER: {
+      top: "1em",
+      marginLeft: `-${500 / 2}px`,
+      left: "50%",
+    },
+  });
+  toast(
+    <Header as="h5" style={{ color: "#FFFFFF" }}>
+      <Icon name="warning sign" />
+      <Header.Content>
+        {message}
+        <Header.Subheader content={submessage} style={{ color: "rgba(255, 255, 255, 0.7)" }} />
+      </Header.Content>
+    </Header>,
+    { position: toast.POSITION.TOP_CENTER, type: toast.TYPE.ERROR, autoClose: false },
+  );
+};
+const showSuccess = (message) => {
+  console.log(message);
+  toast(
+    <Header as="h5" style={{ color: "#FFFFFF" }}>
+      <Icon name="check circle outline" />
+      <Header.Content content={message} />
+    </Header>,
+    { position: toast.POSITION.TOP_CENTER, type: toast.TYPE.SUCCESS, autoClose: true },
+  );
+};
 const mapStateToProps = state => ({
   typeFilter: state.productivityToolsVisibilityFilter.typeFilter,
 });
-const AddButton = () => (
-  <AddProductivityTool trigger={<Button content="Add Tool" icon="plus" primary style={{ position: "fixed", top: "1em", right: "2em" }} />} />
-);
+
 
 export default withRouter(connect(mapStateToProps)(AddProductivityTool));
 

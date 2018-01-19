@@ -6,7 +6,7 @@ import { Provider as ReduxStoreScope } from "react-redux";
 import createHistory from 'history/createBrowserHistory';
 import { BrowserRouter } from "react-router-dom";
 import { AppContainer as HMRScope } from 'react-hot-loader';
-import reducerCollection from "./reducers/_collection";
+import reducerCollection from "./data/reducers/_collection";
 // import subscriptionCollection from "./subscriptions/_collection";
 import App from "./components/App";
 import "../style/semantic.css";

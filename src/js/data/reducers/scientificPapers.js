@@ -1,4 +1,4 @@
-import scientificPaperList from "../data/static/papers";
+import scientificPaperList from "../../data/static/papers";
 
 const scientificPapers = (state = scientificPaperList) => state;
 

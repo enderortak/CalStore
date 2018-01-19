@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import productivityToolsVisibilityFilter from "./productivityToolsVisibilityFilter";
 import productivityTools from "./productivityTools";
 import scientificPapers from "./scientificPapers";
@@ -12,6 +13,7 @@ const reducerCollection = combineReducers({
   scientificPapers,
   scientificPapersVisibilityFilter,
   scientificPapersKeywordList,
+  form: formReducer,
 });
 
 export default reducerCollection;

@@ -1,4 +1,4 @@
-import { keywords } from "../data/static/papers";
+import { keywords } from "../../data/static/papers";
 
 const scientificPapersKeywordList = (state = keywords) => state;
 

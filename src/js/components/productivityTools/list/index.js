@@ -83,7 +83,7 @@ class List extends React.Component {
     } = this.props;
     return (
       <div>
-        <Button as={Link} to="/ProductivityTools/Add"> Add</Button>
+        <Button as={Link} to="/ProductivityTools/Add" content="Add New Tool" icon="plus" primary style={{ position: "fixed", top: "1em", right: "2em" }} />
         <Route path="/ProductivityTools/Add" component={AddProductivityToolPage} />
         <Tabs filters={filters} />
         <SearchInput onChange={event => setTextFilter(event.target.value)} placeholder="Search..." />
